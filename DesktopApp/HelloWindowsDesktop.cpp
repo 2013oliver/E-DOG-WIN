@@ -2,10 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include <tchar.h>
+#include <gdiplus.h>
+#pragma comment (lib,"Gdiplus.lib")
+
+using namespace Gdiplus;
 
 static TCHAR szWindowClass[] = _T("DesktopApp");
 
-static TCHAR szTitle[] = _T("Hello");
+static TCHAR szTitle[] = _T("E-DOG");
 
 HINSTANCE hInst;
 
@@ -15,14 +19,20 @@ void CreateButton(HWND hwnd) {
     HWND Button;
     Button = CreateWindow(
         _T("button"),
-        _T("µ„Œ“"),
+        _T("Start"),
         WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
-        0, 0,
-        100, 50,
+        575, 500,
+        100,50,
         hwnd,
         (HMENU)1001,
         hInst,
         NULL);
+}
+
+void WelcomeImage(HDC hdc) {
+    Graphics graphics(hdc);
+    Image welcome(L"EDOG_LOGO_START_SIT(200X200).png");
+    graphics.DrawImage(&welcome, 450, 100,400,400);
 }
 
 int WINAPI WinMain(
@@ -32,6 +42,11 @@ int WINAPI WinMain(
     _In_ int       nCmdShow
 )
 {
+    GdiplusStartupInput gdiplusStartupInput;
+    ULONG_PTR           gdiplusToken;
+
+    GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
+
     WNDCLASSEX wcex;
 
     wcex.cbSize = sizeof(WNDCLASSEX);
@@ -64,7 +79,7 @@ int WINAPI WinMain(
         szTitle,
         WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT, CW_USEDEFAULT,
-        1920, 1080,
+        1920,1080,
         NULL,
         NULL,
         hInstance,
@@ -81,6 +96,8 @@ int WINAPI WinMain(
     }
 
     CreateButton(hWnd);
+
+    
 
     ShowWindow(hWnd,
         nCmdShow);
@@ -102,6 +119,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
     switch (message) {
     case WM_PAINT:
         hdc = BeginPaint(hWnd, &ps);
+        WelcomeImage(hdc);
         EndPaint(hWnd, &ps);
         break;
     case WM_DESTROY:
@@ -111,7 +129,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
         {
             switch (LOWORD(wParam)) {
             case 1001:
-                MessageBox(hWnd, _T("ƒ„∏…¬Ô~~∞°ﬂœ"), _T("‡À‡À‡À"), MB_OK);
+                MessageBox(hWnd, _T("ƒ„±ª∆≠¡À"),_T("π˛"),MB_OK | MB_ICONINFORMATION);
                 break;
             }
         }
