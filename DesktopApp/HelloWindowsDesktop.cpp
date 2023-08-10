@@ -3,6 +3,7 @@
 #include <string.h>
 #include <tchar.h>
 #include <gdiplus.h>
+#include "Buttons.h"
 #pragma comment (lib,"Gdiplus.lib")
 
 using namespace Gdiplus;
@@ -15,19 +16,7 @@ HINSTANCE hInst;
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
-void CreateButton(HWND hwnd) {
-    HWND Button;
-    Button = CreateWindow(
-        _T("button"),
-        _T("Start"),
-        WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
-        575, 500,
-        100,50,
-        hwnd,
-        (HMENU)1001,
-        hInst,
-        NULL);
-}
+HWND welcomebutton,sitbutton,standbutton,eatbutton,playbutton,aboutbutton;
 
 void WelcomeImage(HDC hdc) {
     Graphics graphics(hdc);
@@ -95,7 +84,8 @@ int WINAPI WinMain(
         return 1;
     }
 
-    CreateButton(hWnd);
+    welcomebutton = CreateWelcomeButton(hWnd,hInst);
+    aboutbutton = CreateAboutButton(hWnd,hInst);
 
     
 
@@ -129,8 +119,26 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
         {
             switch (LOWORD(wParam)) {
             case 1001:
-                MessageBox(hWnd, _T("Äã±»Æ­ÁË"),_T("¹þ"),MB_OK | MB_ICONINFORMATION);
+                sitbutton = CreateSitButton(hWnd,hInst);
+                standbutton = CreateStandButton(hWnd,hInst);
+                eatbutton = CreateEatButton(hWnd,hInst);
+                playbutton = CreatePlayButton(hWnd,hInst);
+                DestroyWindow(welcomebutton);
                 break;
+            case 1002:
+                MessageBox(hWnd, _T("¹þ"), _T("ºÇ"), MB_OK | MB_ICONINFORMATION);
+                break;
+            case 1003:
+                MessageBox(hWnd, _T("ºÇ"), _T("¹þ"), MB_OK | MB_ICONINFORMATION);
+                break;
+            case 1004:
+                MessageBox(hWnd, _T("¹þ"), _T("ºÇ"), MB_OK | MB_ICONINFORMATION);
+                break;
+            case 1005:
+                MessageBox(hWnd, _T("¹þ"), _T("ºÙ"), MB_OK | MB_ICONINFORMATION);
+                break;
+            case 1006:
+                MessageBox(hWnd,_T("E-DOG 1.0"),_T("¹ØÓÚ"), MB_OK | MB_ICONINFORMATION);
             }
         }
         return DefWindowProc(hWnd, message, wParam, lParam);
@@ -138,6 +146,5 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
         return DefWindowProc(hWnd, message, wParam, lParam);
         break;
     }
-
     return 0;
 }

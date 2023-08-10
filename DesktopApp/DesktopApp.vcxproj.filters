@@ -18,6 +18,9 @@
     <ClCompile Include="HelloWindowsDesktop.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Buttons.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="EDOG_LOGO_START_HELLO(626X158).bmp">
@@ -38,5 +41,10 @@
     <Image Include="EDOG_STAND_YEE!(200X200).bmp">
       <Filter>资源文件</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Buttons.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
