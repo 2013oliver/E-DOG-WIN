@@ -21,29 +21,15 @@
     <ClCompile Include="Buttons.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="EDOG_LOGO_START_HELLO(626X158).bmp">
-      <Filter>资源文件</Filter>
-    </Image>
-    <Image Include="EDOG_LOGO_START_SIT(200X200).bmp">
-      <Filter>资源文件</Filter>
-    </Image>
-    <Image Include="EDOG_SIT(200X200).bmp">
-      <Filter>资源文件</Filter>
-    </Image>
-    <Image Include="EDOG_SIT_EYECLOSED(200X200).bmp">
-      <Filter>资源文件</Filter>
-    </Image>
-    <Image Include="EDOG_STAND_EYECLOSED(200X200).bmp">
-      <Filter>资源文件</Filter>
-    </Image>
-    <Image Include="EDOG_STAND_YEE!(200X200).bmp">
-      <Filter>资源文件</Filter>
-    </Image>
+    <ClCompile Include="Images.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Buttons.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Images.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

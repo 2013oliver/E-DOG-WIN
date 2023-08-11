@@ -78,7 +78,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -92,7 +92,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -129,17 +129,11 @@
   <ItemGroup>
     <ClCompile Include="Buttons.cpp" />
     <ClCompile Include="HelloWindowsDesktop.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="EDOG_LOGO_START_HELLO(626X158).bmp" />
-    <Image Include="EDOG_LOGO_START_SIT(200X200).bmp" />
-    <Image Include="EDOG_SIT(200X200).bmp" />
-    <Image Include="EDOG_SIT_EYECLOSED(200X200).bmp" />
-    <Image Include="EDOG_STAND_EYECLOSED(200X200).bmp" />
-    <Image Include="EDOG_STAND_YEE!(200X200).bmp" />
+    <ClCompile Include="Images.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Buttons.h" />
+    <ClInclude Include="Images.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

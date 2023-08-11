@@ -1,10 +1,12 @@
 #include <windows.h>
 #include <stdlib.h>
-#include <string.h>
+#include <string>
 #include <tchar.h>
 #include <gdiplus.h>
 #include "Buttons.h"
+#include "Images.h"
 #pragma comment (lib,"Gdiplus.lib")
+using namespace std;
 
 using namespace Gdiplus;
 
@@ -18,11 +20,10 @@ LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
 HWND welcomebutton,sitbutton,standbutton,eatbutton,playbutton,aboutbutton;
 
-void WelcomeImage(HDC hdc) {
-    Graphics graphics(hdc);
-    Image welcome(L"EDOG_LOGO_START_SIT(200X200).png");
-    graphics.DrawImage(&welcome, 450, 100,400,400);
-}
+string dog_status = "stand";
+
+int eyetime = 1;
+
 
 int WINAPI WinMain(
     _In_ HINSTANCE hInstance,
@@ -87,8 +88,6 @@ int WINAPI WinMain(
     welcomebutton = CreateWelcomeButton(hWnd,hInst);
     aboutbutton = CreateAboutButton(hWnd,hInst);
 
-    
-
     ShowWindow(hWnd,
         nCmdShow);
     UpdateWindow(hWnd);
@@ -123,13 +122,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
                 standbutton = CreateStandButton(hWnd,hInst);
                 eatbutton = CreateEatButton(hWnd,hInst);
                 playbutton = CreatePlayButton(hWnd,hInst);
+                SetTimer(hWnd,(UINT_PTR)2001,500,(TIMERPROC)NULL);
                 DestroyWindow(welcomebutton);
                 break;
             case 1002:
-                MessageBox(hWnd, _T("込"), _T("最"), MB_OK | MB_ICONINFORMATION);
+                dog_status = "sit";
                 break;
             case 1003:
-                MessageBox(hWnd, _T("最"), _T("込"), MB_OK | MB_ICONINFORMATION);
+                dog_status = "stand";
                 break;
             case 1004:
                 MessageBox(hWnd, _T("込"), _T("最"), MB_OK | MB_ICONINFORMATION);
@@ -142,6 +142,23 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
             }
         }
         return DefWindowProc(hWnd, message, wParam, lParam);
+    case WM_TIMER:
+        switch (wParam)
+        {
+        case 2001:
+            HDC hdc_temp;
+            hdc_temp = GetDC(hWnd);
+            eyetime++;
+            if (dog_status == "stand") {
+                if (eyetime % 2) StandEyeClosedImage(hdc_temp);
+                else StandEyeOpenedImage(hdc_temp);
+            }
+            else if (dog_status == "sit") {
+                if (eyetime % 2) SitEyeClosedImage(hdc_temp);
+                else SitEyeOpenedImage(hdc_temp);
+            }
+            if (eyetime == 32767) eyetime = 1;
+        }
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
         break;
