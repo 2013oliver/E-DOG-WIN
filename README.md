@@ -4,4 +4,6 @@
 ## 编译
 先运行`git clone https://github.com/2013oliver/E-DOG-WIN.git`克隆仓库  
 再打开Visual Studio加载`DesktopApp.sln`解决方案  
-按`F5`编译与运行
+按`F5`编译与运行  
+  
+注:开发者是十岁的小孩子(真的!)
