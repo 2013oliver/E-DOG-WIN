@@ -5,7 +5,9 @@
 #include <gdiplus.h>
 #include "Buttons.h"
 #include "Images.h"
+#include "resource.h"
 #pragma comment (lib,"Gdiplus.lib")
+
 using namespace std;
 
 using namespace Gdiplus;
@@ -45,12 +47,12 @@ int WINAPI WinMain(
     wcex.cbClsExtra = 0;
     wcex.cbWndExtra = 0;
     wcex.hInstance = hInstance;
-    wcex.hIcon = LoadIcon(wcex.hInstance, IDI_APPLICATION);
+    wcex.hIcon = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_ICON1));
     wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
     wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
     wcex.lpszMenuName = NULL;
     wcex.lpszClassName = szWindowClass;
-    wcex.hIconSm = LoadIcon(wcex.hInstance, IDI_APPLICATION);
+    wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_ICON1));
 
     if (!RegisterClassEx(&wcex)) {
         MessageBox(NULL,
@@ -132,10 +134,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
                 dog_status = "stand";
                 break;
             case 1004:
-                MessageBox(hWnd, _T("¹þ"), _T("ºÇ"), MB_OK | MB_ICONINFORMATION);
+                MessageBox(hWnd, _T("¾´ÇëÆÚ´ý"), _T("¾´ÇëÆÚ´ý"), MB_OK | MB_ICONINFORMATION);
                 break;
             case 1005:
-                MessageBox(hWnd, _T("¹þ"), _T("ºÙ"), MB_OK | MB_ICONINFORMATION);
+                MessageBox(hWnd, _T("¾´ÇëÆÚ´ý"), _T("¾´ÇëÆÚ´ý"), MB_OK | MB_ICONINFORMATION);
                 break;
             case 1006:
                 MessageBox(hWnd,_T("E-DOG 1.0"),_T("¹ØÓÚ"), MB_OK | MB_ICONINFORMATION);
